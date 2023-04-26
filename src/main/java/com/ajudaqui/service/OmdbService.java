@@ -13,6 +13,8 @@ public class OmdbService {
 
 //	@Value("${apiKey}")
 	private String apiKey="6a6e3aa7";
+	
+	private Writer writer= new Writer();
 
 	public URI byTitle(String title) {
 		String uri = String.format("http://www.omdbapi.com/?t=%s&apikey=%s", title, apiKey);
@@ -30,7 +32,7 @@ public class OmdbService {
 
 	public void inText(Movie movie, String name) {
 		String context = GsonConverter.movieToJson(movie);
-		Writer.inTxt(name, context);
+		writer.inTxt(name, movie);
 		System.out.println("\nArquivo criado com sucesso!");
 	}
 

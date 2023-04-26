@@ -28,7 +28,7 @@ public class AddressService {
 	
 	public void inText(Address address, String name) {
 		String context = GsonConverter.addressToJson(address);
-		Writer.inTxt(name, context);
+//		Writer.inTxt(name, context);
 	}
 
 	public void inSpreadsheet(Address address, String name) {

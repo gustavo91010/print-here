@@ -1,9 +1,14 @@
 package com.ajudaqui.entity;
 
+import java.io.Serializable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Movie {
-	 @SerializedName("Title")
+public class Movie implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	
+	@SerializedName("Title")
 	private String title;
 	private String Year;
 	private String Runtime;
