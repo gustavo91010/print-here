@@ -42,6 +42,11 @@ public class Page02 {
 			
 			if(menu ==1) {
 				omdbService.inText(movie, name, title);
+				
+				if(!(movie.getPoster()==null)) {
+					omdbService.imageDownload(movie.getPoster(), name, title);
+					
+				}
 			}
 			if(menu ==2) {
 				omdbService.inSpreadsheet(movie, name);

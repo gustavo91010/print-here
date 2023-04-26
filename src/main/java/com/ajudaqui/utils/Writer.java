@@ -18,7 +18,6 @@ public class Writer {
 
 //	java.nio.file.Files
 
-//	public void inTxt(String name, Movie movie) {
 	public void inTxt(String name, String json, String title) {
 		String userHome = System.getProperty("user.home");
 		String subDir = "print-here/generated-files/" + name;
@@ -28,8 +27,12 @@ public class Writer {
 				Files.createDirectories(root);
 			}
 
+			// Cria o diretório com o título
+	        Path titleDir = root.resolve(title);
+	        Files.createDirectories(titleDir);
+	        
 			// Cria o arquivo dentro do diretório raiz
-			Path filePath = root.resolve(title+".txt");
+			Path filePath = titleDir.resolve(title+".txt");
 			 Files.write(filePath, json.getBytes());
 
 
