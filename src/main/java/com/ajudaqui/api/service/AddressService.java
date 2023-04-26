@@ -1,9 +1,9 @@
-package com.ajudaqui.service;
+package com.ajudaqui.api.service;
 
 import java.net.URI;
 
-import com.ajudaqui.config.ConnectionFactory;
-import com.ajudaqui.entity.Address;
+import com.ajudaqui.api.config.ConnectionFactory;
+import com.ajudaqui.api.entity.Address;
 import com.ajudaqui.utils.GsonConverter;
 import com.ajudaqui.utils.Writer;
 

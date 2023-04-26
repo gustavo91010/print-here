@@ -1,4 +1,4 @@
-package com.ajudaqui.config;
+package com.ajudaqui.api.config;
 
 import java.io.IOException;
 import java.net.URI;

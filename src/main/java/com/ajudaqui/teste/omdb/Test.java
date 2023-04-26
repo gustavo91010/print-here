@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import com.ajudaqui.entity.Movie;
+import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.utils.GsonConverter;
 import com.ajudaqui.utils.Writer;
 

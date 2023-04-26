@@ -1,11 +1,11 @@
-package com.ajudaqui.service;
+package com.ajudaqui.api.service;
 
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.ajudaqui.config.ConnectionFactory;
-import com.ajudaqui.entity.Movie;
+import com.ajudaqui.api.config.ConnectionFactory;
+import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.utils.GsonConverter;
 import com.ajudaqui.utils.Writer;
 
@@ -30,9 +30,9 @@ public class OmdbService {
 		return movie;
 	}
 
-	public void inText(Movie movie, String name) {
+	public void inText(Movie movie, String name, String title) {
 		String context = GsonConverter.movieToJson(movie);
-		writer.inTxt(name, movie);
+		writer.inTxt(name, context,title);
 		System.out.println("\nArquivo criado com sucesso!");
 	}
 

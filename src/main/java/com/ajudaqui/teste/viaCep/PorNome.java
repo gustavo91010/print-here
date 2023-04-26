@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import com.ajudaqui.entity.Address;
+import com.ajudaqui.api.entity.Address;
 import com.ajudaqui.utils.GsonConverter;
 import com.google.gson.Gson;
 

@@ -2,8 +2,8 @@ package com.ajudaqui.app.pages;
 
 import java.util.Scanner;
 
-import com.ajudaqui.entity.Movie;
-import com.ajudaqui.service.OmdbService;
+import com.ajudaqui.api.entity.Movie;
+import com.ajudaqui.api.service.OmdbService;
 import com.ajudaqui.utils.InputBroker;
 
 public class Page02 {
@@ -15,14 +15,15 @@ public class Page02 {
 		String sair="sair";
 		while(!opcao.equalsIgnoreCase(sair)) {
 			System.out.println("Tudo bem, vamos lá, me diga, qual titulo voce quer encontrar? ");
-			opcao= scanner.next();
-			System.out.println("\nOk, tudo bem, vou buscar o filme "+opcao+" para voce, só um instante...");
+		String title="";
+		title= scanner.next();
+			System.out.println("\nOk, tudo bem, vou buscar o filme "+title+" para voce, só um instante...");
 		
-			Movie movie = omdbService.calUp(opcao);
+			Movie movie = omdbService.calUp(title);
 			while(movie.getTitle()== null) {
 				System.out.println("Seu filme não foi encontrado,\nporfavor, tente outro.");
-				opcao= scanner.next();
-				movie = omdbService.calUp(opcao);
+				title= scanner.next();
+				movie = omdbService.calUp(title);
 			}
 			
 			
@@ -40,7 +41,7 @@ public class Page02 {
 			Integer menu= InputBroker.isInt(scanner);
 			
 			if(menu ==1) {
-				omdbService.inText(movie, name);
+				omdbService.inText(movie, name, title);
 			}
 			if(menu ==2) {
 				omdbService.inSpreadsheet(movie, name);

@@ -1,4 +1,4 @@
-package com.ajudaqui.entity;
+package com.ajudaqui.api.entity;
 
 public class Address {
 	private String cep;

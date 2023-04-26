@@ -1,7 +1,7 @@
 package com.ajudaqui.utils;
 
-import com.ajudaqui.entity.Address;
-import com.ajudaqui.entity.Movie;
+import com.ajudaqui.api.entity.Address;
+import com.ajudaqui.api.entity.Movie;
 import com.google.gson.Gson;
 
 public class GsonConverter {
