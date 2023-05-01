@@ -15,8 +15,8 @@ import org.apache.commons.io.FilenameUtils;
 import com.ajudaqui.api.config.ConnectionFactory;
 import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.utils.GsonConverter;
-import com.ajudaqui.utils.WriterTxt;
-import com.ajudaqui.utils.WriterXlsx;
+import com.ajudaqui.utils.writer.MovieXlsx;
+import com.ajudaqui.utils.writer.WriterTxt;
 
 public class OmdbService {
 
@@ -41,14 +41,24 @@ public class OmdbService {
 
 	public void inText(Movie movie, String name, String title) {
 		String context = movie.getPlot();
-		writer.inTxt(name, context, title);
+		writer.movieInTxt(name, context, title);
 		System.out.println("\nArquivo criado com sucesso!");
 	}
 
 	public void inSpreadsheet(Movie movie, String name) {
-		Path path = WriterXlsx.inXlsx(movie, name);
+		try {
+		 MovieXlsx.inXlsx(movie, name);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		ClassNotFoundException
+//		IOException
 		System.out.println("\nPlanilha criada com sucesso!");
-		System.out.println("Ela se encontra em: " + path.toAbsolutePath());
+		
 	}
 
 	public void imageDownload(String urlImage, String name, String title) {

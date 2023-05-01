@@ -1,4 +1,4 @@
-package com.ajudaqui.utils;
+package com.ajudaqui.utils.writer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,9 +23,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.ajudaqui.api.entity.Movie;
 
-public class WriterXlsx {
+public class MovieXlsx {
 
-	public static Path inXlsx(Movie movie, String name) {
+	public static Path inXlsx(Movie movie, String name) throws ClassNotFoundException, IOException {
 		// cria uma nova planilha
 		Workbook planilha = new XSSFWorkbook();
 		
@@ -41,8 +41,8 @@ public class WriterXlsx {
 		CellStyle estiloConteudo = estiloConteudo(planilha);
 
 		String caminho = "com.ajudaqui.api.entity.Movie";
-		List<String> atributoList = atributos(caminho);
-		Map<String, String> valoresList = valores(movie);
+		List<String> atributoList = movieAtb(caminho);
+		Map<String, String> valoresList = movieValues(movie);
 
 		int posicaoLinha = 1;
 		for (String atb : atributoList) {
@@ -66,9 +66,8 @@ public class WriterXlsx {
 
 	}
 
-	private static Path escreverPanilha(Workbook planilha, Movie movie, String name) {
+	private static Path escreverPanilha(Workbook planilha, Movie movie, String name) throws IOException {
 		Path path= null;
-		try {
 			// Retira caracters especiais que nao podem estar no titulo da planilha
 			String sheetName = movie.getTitle().replaceAll("[:*?/\\[\\]]", "");
 			String userHome = System.getProperty("user.home");
@@ -82,9 +81,6 @@ public class WriterXlsx {
 
 			System.out.println("Seu arquivo se encontra em:\n" + path.toAbsolutePath());
 
-		} catch (IOException e) {
-
-		}
 		return path;
 
 	}
@@ -127,10 +123,9 @@ public class WriterXlsx {
 		return fonte;
 	}
 
-	private static List<String> atributos(String caminho) { // "com.ajudaqui.api.entity.Movie"
+	private static List<String> movieAtb(String caminho) throws ClassNotFoundException { // "com.ajudaqui.api.entity.Movie"
 		List<String> atributos = new ArrayList<String>();
 		Class<?> cls;
-		try {
 			cls = Class.forName(caminho);
 
 			Field fieldList[] = cls.getDeclaredFields();
@@ -143,15 +138,12 @@ public class WriterXlsx {
 			atributos.remove("Plot");
 			atributos.remove("Poster");
 			atributos.remove("serialVersionUID");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return atributos;
 
 	}
 
-	private static Map<String, String> valores(Movie movie) {
+	private static Map<String, String> movieValues(Movie movie) {
 		Map<String, String> valores = new HashMap<String, String>();
 		valores.put("title", movie.getTitle());
 		valores.put("Year", movie.getYear());

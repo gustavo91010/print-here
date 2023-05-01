@@ -22,7 +22,7 @@ public class Page01 {
 			Integer menu = InputBroker.isInt(scanner);
 			if (menu == 1) {
 				
-				new Page02().filmes(scanner, name);
+				new Page02_movie().filmes(scanner, name);
 			}
 			if (menu == 2) {
 				System.out.println("endereços... ");

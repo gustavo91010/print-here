@@ -6,7 +6,7 @@ import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.api.service.OmdbService;
 import com.ajudaqui.utils.InputBroker;
 
-public class Page02 {
+public class Page02_movie {
 	
 	private OmdbService omdbService = new OmdbService();
 	

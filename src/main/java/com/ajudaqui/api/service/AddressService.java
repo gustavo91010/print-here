@@ -1,11 +1,17 @@
 package com.ajudaqui.api.service;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 import com.ajudaqui.api.config.ConnectionFactory;
 import com.ajudaqui.api.entity.Address;
 import com.ajudaqui.utils.GsonConverter;
-import com.ajudaqui.utils.WriterTxt;
+import com.ajudaqui.utils.writer.AddressXlsx;
+import com.ajudaqui.utils.writer.WriterTxt;
 
 public class AddressService {
 	
@@ -28,12 +34,38 @@ public class AddressService {
 	
 	public void inText(Address address, String name) {
 		String context = GsonConverter.addressToJson(address);
-//		Writer.inTxt(name, context);
+		WriterTxt.andressInTxt(name, context, address.getLogradouro());
 	}
 
 	public void inSpreadsheet(Address address, String name) {
-		String context = GsonConverter.addressToJson(address);;
-//		WriterTxt.planilhaFilme(name, context);
+//		String context = GsonConverter.addressToJson(address);;
+		try {
+			AddressXlsx.inXlsx(address, name);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void openMaps(String cep) {
+		try {
+			String url = "http://maps.google.com/maps?q=" + URLEncoder.encode(cep, "UTF-8");
+			
+			Desktop.getDesktop().browse(new URI(url));
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -9,7 +9,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.utils.GsonConverter;
-import com.ajudaqui.utils.WriterTxt;
+import com.ajudaqui.utils.writer.WriterTxt;
 
 public class Test {
 	public static void main(String[] args) throws IOException, InterruptedException {

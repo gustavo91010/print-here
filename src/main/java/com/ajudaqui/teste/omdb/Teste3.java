@@ -9,10 +9,10 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.utils.GsonConverter;
-import com.ajudaqui.utils.WriterXlsx;
+import com.ajudaqui.utils.writer.MovieXlsx;
 
 public class Teste3 {
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
 		System.err.println("comecei");		
 
 		HttpClient client = HttpClient.newHttpClient();
@@ -31,7 +31,7 @@ public class Teste3 {
 				     .send(request, BodyHandlers.ofString());
 		   Movie movie=GsonConverter.toMovie(response.body());
 		   
-		   WriterXlsx.inXlsx(movie, "opa");
+		   MovieXlsx.inXlsx(movie, "opa");
 			System.err.println("acabou");		
 
 		

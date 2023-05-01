@@ -1,6 +1,7 @@
 package com.ajudaqui.teste;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 //import java.lang.reflect.Modifier;
 
 public class NomeAtributos {
@@ -15,25 +16,13 @@ public class NomeAtributos {
 		 for( int i=0; i< fieldList.length; i++) {
 			 Field fld= fieldList[i];
 			 System.out.println("nome= "+fld.getName());
-//			 System.out.println("cecl class= "+fld.getDeclaringClass());
-//			 System.out.println("Type= "+fld.getType());
-//			 int mod = fld.getModifiers();
-//	           System.out.println("modifiers = " +
-//	                      Modifier.toString(mod));
-//	           System.out.println("-----");
+			 System.out.println("cecl class= "+fld.getDeclaringClass());
+			 System.out.println("Type= "+fld.getType());
+			 int mod = fld.getModifiers();
+	           System.out.println("modifiers = " +
+	                      Modifier.toString(mod));
+	           System.out.println("-----");
 		 }
-		 /*Retorno:
-		  * 
-		  * nome= serialVersionUID
-			nome= title
-			nome= Year
-			nome= Runtime
-			nome= Plot
-			nome= Poster
-			nome= imdbRating
-			nome= imdbVotes
-			nome= imdbID
-		  */
 		 
 		    
 	}

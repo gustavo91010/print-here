@@ -12,6 +12,12 @@ public class GsonConverter {
 //
 		return adress;
 	}
+	public static Address toAddressString(String json) {
+		Gson gson = new Gson();
+		Address adress =gson.fromJson(json, Address.class);
+//
+		return adress;
+	}
 	public static String addressToJson(Address adress) {
 		Gson gson = new Gson();
 		String json = gson.toJson(adress);

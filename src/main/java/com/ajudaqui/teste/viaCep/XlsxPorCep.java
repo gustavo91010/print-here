@@ -7,11 +7,16 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-public class porCep {
+import com.ajudaqui.api.entity.Address;
+import com.ajudaqui.api.service.AddressService;
+import com.ajudaqui.utils.GsonConverter;
+
+public class XlsxPorCep {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		HttpClient client = HttpClient.newHttpClient();
 		
 		int cep=54310275;
+//		int cep=51340350;
 		String uri=String.format("https://viacep.com.br/ws/%d/json/", cep);
 		
 
@@ -23,6 +28,13 @@ public class porCep {
 		   HttpResponse<String> response = client
 				     .send(request, BodyHandlers.ofString());
 		   System.out.println(response.body());
+		   
+		   AddressService addressService= new AddressService();
+		 Address address = GsonConverter.toAddressString(response.body());
+		 
+		 addressService.inText(address, "bob");
+		   addressService.inSpreadsheet(address, "bob");
+		   System.err.println();
 	}
 
 }

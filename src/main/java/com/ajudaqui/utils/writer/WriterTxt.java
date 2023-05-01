@@ -1,4 +1,4 @@
-package com.ajudaqui.utils;
+package com.ajudaqui.utils.writer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,11 +7,10 @@ import java.nio.file.Paths;
 
 public class WriterTxt {
 
-//	java.nio.file.Files
 
-	public void inTxt(String name, String json, String title) {
+	public void movieInTxt(String name, String json, String title) {
 		String userHome = System.getProperty("user.home");
-		String subDir = "print-here/generated-files/" + name;
+		String subDir = "print-here/generated-files/" + name+"/movie";
 		Path root = Paths.get(userHome, subDir);
 		try {
 			if (!Files.exists(root)) {
@@ -27,11 +26,33 @@ public class WriterTxt {
 			 Files.write(filePath, json.getBytes());
 
 
-			// Imprime o caminho absoluto do arquivo
-//			System.err.println("Arquivo salvo em: " + root.toAbsolutePath());
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void andressInTxt(String name, String json, String logradouro) {
+		String userHome = System.getProperty("user.home");
+		String subDir = "print-here/generated-files/" + name+"/andress";
+		Path root = Paths.get(userHome, subDir);
+		try {
+			if (!Files.exists(root)) {
+				Files.createDirectories(root);
+			}
+
+			// Cria o diretório com o título
+	        Path titleDir = root.resolve(logradouro);
+	        Files.createDirectories(titleDir);
+	        
+			// Cria o arquivo dentro do diretório raiz
+			Path filePath = titleDir.resolve(logradouro+".txt");
+			 Files.write(filePath, json.getBytes());
+			 System.out.println(filePath.toAbsolutePath());
+
+
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
