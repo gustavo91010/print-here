@@ -5,7 +5,7 @@ import java.net.URI;
 import com.ajudaqui.api.config.ConnectionFactory;
 import com.ajudaqui.api.entity.Address;
 import com.ajudaqui.utils.GsonConverter;
-import com.ajudaqui.utils.Writer;
+import com.ajudaqui.utils.WriterTxt;
 
 public class AddressService {
 	
@@ -33,7 +33,7 @@ public class AddressService {
 
 	public void inSpreadsheet(Address address, String name) {
 		String context = GsonConverter.addressToJson(address);;
-		Writer.planilhaFilme(name, context);
+//		WriterTxt.planilhaFilme(name, context);
 	}
 
 }

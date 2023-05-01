@@ -9,14 +9,16 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 import com.ajudaqui.api.entity.Movie;
 import com.ajudaqui.utils.GsonConverter;
-import com.ajudaqui.utils.WriterTxt;
+import com.ajudaqui.utils.WriterXlsx;
 
-public class Test {
+public class Teste3 {
 	public static void main(String[] args) throws IOException, InterruptedException {
+		System.err.println("comecei");		
+
 		HttpClient client = HttpClient.newHttpClient();
 		String apiKes="6a6e3aa7";
-//		String title="aladin";
-		String title="matrix";
+		String title="aladin";
+//		String title="matrix";
 //		String title="divertidamente";
 //		String title="O%20Senhor%20dos%20Anéis";
 		
@@ -27,12 +29,12 @@ public class Test {
 		   
 		   HttpResponse<String> response = client
 				     .send(request, BodyHandlers.ofString());
-		   Movie filme=GsonConverter.toMovie(response.body());
-		   System.out.println(filme.toString());
+		   Movie movie=GsonConverter.toMovie(response.body());
 		   
-//		   Writer.inTxt("bob", response.body());
-//		   Writer.planilhaFilme("Gugs", response.body());
-		   System.out.println("\nacabou!");
+		   WriterXlsx.inXlsx(movie, "opa");
+			System.err.println("acabou");		
+
+		
 	}
 
 }
