@@ -41,8 +41,8 @@ public class OmdbService {
 
 	public void inText(Movie movie, String name, String title) {
 		String context = movie.getPlot();
-		writer.movieInTxt(name, context, title);
-		System.out.println("\nArquivo criado com sucesso!");
+//		writer.movieInTxt(name, context, title);
+		writer.plotInTxt(name, movie,context);
 	}
 
 	public void inSpreadsheet(Movie movie, String name) {
@@ -63,8 +63,12 @@ public class OmdbService {
 
 	public void imageDownload(String urlImage, String name, String title) {
 
+//		String userHome = System.getProperty("user.home");
+////		String subDir = "print-here/generated-files/" + name;
+//		String subDir = "print-here/generated-files/" + name+"/movie";
+		String sheetName = title.replaceAll("[:*?/\\[\\]]", "");
 		String userHome = System.getProperty("user.home");
-		String subDir = "print-here/generated-files/" + name;
+		String subDir = "print-here/generated-files/" + name+"/movie";
 		Path root = Paths.get(userHome, subDir);
 		try {
 

@@ -15,21 +15,38 @@ import com.ajudaqui.utils.writer.WriterTxt;
 
 public class AddressService {
 	
-	public URI byAddress(String uf, String city, String street) {
+	private URI byAddress(String uf, String city, String street) {
 		String uri3="https://viacep.com.br/ws/"+uf+"/"+city+"/"+street+"/json/";
 
 		return URI.create(uri3.replace(" ", "%20"));
 		
 	}
+	public Address addressByCep(int cep) {
+		URI uri = byCep(cep);
+		Address address = calUp(uri);
+	return address;	
+	}
+	public Address addressByCep(String uf, String city, String street) {
+		URI uri = byAddress(uf, city, street);
+		Address address = calUp(uri);
+		return address;	
+	}
 	
-	public Address calUp(URI uri) {
+	private URI byCep(int cep) {
+		String uri=String.format("https://viacep.com.br/ws/%d/json/", cep);
+		
+		return URI.create(uri.replace(" ", "%20"));
+		
+	}
+	
+	private Address calUp(URI uri) {
 		String response = ConnectionFactory.request(uri);
 		
 //		Gson gson= new Gson();
 //		Address[] enderecos =(Address[]) gson.fromJson(response, Address[].class);
 		
-		Address[] enderecos= GsonConverter.toAddress(response);
-		return enderecos[0];
+		 Address enderecos = GsonConverter.toAddressString(response);
+		return enderecos;
 	}
 	
 	public void inText(Address address, String name) {
@@ -55,6 +72,7 @@ public class AddressService {
 			String url = "http://maps.google.com/maps?q=" + URLEncoder.encode(cep, "UTF-8");
 			
 			Desktop.getDesktop().browse(new URI(url));
+			System.out.println("Ve la que ja abriu");
 			
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

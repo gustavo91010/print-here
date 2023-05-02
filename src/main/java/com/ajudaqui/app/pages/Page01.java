@@ -25,7 +25,7 @@ public class Page01 {
 				new Page02_movie().filmes(scanner, name);
 			}
 			if (menu == 2) {
-				System.out.println("endereços... ");
+				new Page03_address().address(scanner, name);
 
 			}
 

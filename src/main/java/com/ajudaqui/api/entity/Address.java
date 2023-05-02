@@ -57,6 +57,12 @@ public class Address {
 	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
+	@Override
+	public String toString() {
+		return "Address: \n[cep=" + cep + ",\nlogradouro=" + logradouro + ",\ncomplemento=" + complemento + ",\nbairro="
+				+ bairro + ",\nlocalidade=" + localidade + ",\nuf=" + uf + ",\nibge=" + ibge + ",\nddd=" + ddd + "]";
+	}
+	
 	
 	
 

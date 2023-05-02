@@ -3,6 +3,7 @@ package com.ajudaqui.utils.writer;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -67,13 +68,19 @@ public class MovieXlsx {
 	}
 
 	private static Path escreverPanilha(Workbook planilha, Movie movie, String name) throws IOException {
-		Path path= null;
 			// Retira caracters especiais que nao podem estar no titulo da planilha
 			String sheetName = movie.getTitle().replaceAll("[:*?/\\[\\]]", "");
 			String userHome = System.getProperty("user.home");
-			String subDir = "print-here/generated-files/" + name+"/"+sheetName;
+			String subDir = "print-here/generated-files/" + name+"/movie";
+			Path pat0h = Paths.get(userHome, subDir,sheetName);
 			
-			path = Paths.get(userHome, subDir,sheetName + ".xlsx");
+			Path path = pat0h.resolve(sheetName + ".xlsx");
+			
+			// Cria o diretório com o título
+			if (!Files.exists(pat0h)) {
+				Files.createDirectories(pat0h);
+			}
+			
 			FileOutputStream arquivoSaida = new FileOutputStream(path.toString());
 			planilha.write(arquivoSaida);
 			arquivoSaida.flush();

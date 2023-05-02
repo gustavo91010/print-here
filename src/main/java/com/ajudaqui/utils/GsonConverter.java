@@ -6,12 +6,6 @@ import com.google.gson.Gson;
 
 public class GsonConverter {
 
-	public static Address[] toAddress(String json) {
-		Gson gson = new Gson();
-		Address[] adress =(Address[]) gson.fromJson(json, Address[].class);
-//
-		return adress;
-	}
 	public static Address toAddressString(String json) {
 		Gson gson = new Gson();
 		Address adress =gson.fromJson(json, Address.class);

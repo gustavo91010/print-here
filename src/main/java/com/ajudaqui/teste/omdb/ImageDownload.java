@@ -22,20 +22,6 @@ public class ImageDownload {
 
 		imageDownload(urlImage, "mila", "teste");
 
-		// String userHome = System.getProperty("user.home");
-//		String subDir = "print-here/generated-files/downloads/images";
-//		Path root = Paths.get(userHome, subDir);
-//		String fileName = "lobo.jpg";
-//		Path fileParh = root.resolve(fileName);
-//		if (!Files.exists(root)) {
-//			Files.createDirectories(root);
-//		}
-
-//
-//		Files.copy(new URL(urlImage).openStream(), fileParh);
-//
-//		System.out.println("Imagem salva em: " + fileParh.toAbsolutePath());
-
 	}
 
 	public static void imageDownload(String urlImage, String name, String title) {
